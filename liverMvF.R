@@ -10,7 +10,7 @@ library(org.Dr.eg.db)
 
 # ------------------ formatting the data for analysis ----------------------#
 # Read the file
-countData <- read.delim('/Users/sm2949/Desktop/fragmentCounts.txt', header=TRUE, sep = "\t", skip=1)
+countData <- read.delim(file_path, header=TRUE, sep = "\t", skip=1)
 # subset to only include gene id and counts
 countData <- countData[, c(1, 7:12)]
 # rename the columns for clarity
@@ -60,7 +60,7 @@ resLFC <- lfcShrink(dds, coef="sex_F_vs_M", type="apeglm")
 # convert to a dataframe
 results_df <- as.data.frame(resLFC)
 # save the results to a csv
-write.csv(results_df,file='/Users/sm2949/Desktop/DESEQ_MvF_results.csv',na='')
+write.csv(results_df,file='DESEQ_MvF_results.csv',na='')
 
 # remove rows with NA adjusted pvals
 results_df <- results_df[!is.na(results_df$padj), ]
